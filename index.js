@@ -10,7 +10,7 @@ app.use(cors());
 // Habilitar express.json este es el remplazo de body parser
 app.use(express.json({extended:true}));
 // Crear puerto, eroku busca el puerto que este disponible
-const PORT = process.env.PORT || 4000;
+const port = process.env.PORT || 4000;
 
 // Importar rutas
 app.use('/api/usuarios', require('./routes/usuarios'));
@@ -18,6 +18,6 @@ app.use('/api/auth',require('./routes/auth'));
 app.use('/api/proyectos',require('./routes/proyecto'));
 app.use('/api/tareas',require('./routes/tareas'));
 // Arracar la app
-app.listen(PORT, ()=>{
+app.listen(port, '0.0.0.0',()=>{
     console.log('arriba');
 })
