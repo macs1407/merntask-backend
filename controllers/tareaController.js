@@ -64,6 +64,7 @@ exports.actualizarTarea = async(req,resp)=>{
         return resp.status(400).json({errores:errores.array()})
     }
     try{
+        console.log(req.body);
         const {proyecto,nombre,estado} = req.body;
         let valid = mongoose.Types.ObjectId.isValid(proyecto);
         if (!valid){
@@ -87,9 +88,7 @@ exports.actualizarTarea = async(req,resp)=>{
         if(nombre){
             nuevaTarea.nombre = nombre;
         }
-        if(estado){
-            nuevaTarea.estado = estado;
-        }
+        nuevaTarea.estado = estado;
 
         tarea = await Tarea.findByIdAndUpdate({_id: req.params.id},nuevaTarea,{new:true});
         resp.status(200).json({tarea});
